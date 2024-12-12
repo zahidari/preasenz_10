@@ -1,0 +1,48 @@
+package main;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Random;
+import java.util.stream.DoubleStream;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
+public class Main {
+
+	public static IntStream powerOfTwo() {
+		IntStream is = IntStream.range(1, 30)
+								.map(x -> (int)Math.pow(x, 2));
+		
+		return is;
+		//return IntStream.rangeClosed(0,30).map(int i -> {return (int) Math.pow(2,i)});
+	}
+	
+	
+	
+	public static void testStream(IntStream is, int num) {
+		is.limit(num).forEach((int i) -> System.out.println(i));
+		
+	}
+	public static int[] toArray(ArrayList<Integer> list){
+		
+		int [] arrList = list.stream().mapToInt((Integer i)-> (int)i).toArray();
+		//Stream<Integer> x = list.stream();
+		//arrList = x.mapToInt(Integer::intValue).toArray();
+		return arrList;
+	}
+	public static double[] getRandNumbers(int cnt) {
+		return DoubleStream.generate(new Random()::nextDouble).limit(cnt).toArray();
+	}
+	public static Stream<Character> getCharStream(String s){
+		return s.chars()
+				.mapToObj(i -> (char)i)
+				;
+	}
+	
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		testStream(powerOfTwo(),5);
+	}
+
+}
